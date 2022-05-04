@@ -22,41 +22,51 @@ class BottomSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: AppColors.shape,
-        child: Column(
-          children: [
-            Expanded(
-                child: Container(
-              color: Colors.black.withOpacity(0.6),
-            )),
-            Column(children: [
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Text.rich(
-                  TextSpan(
-                      text: title,
-                      style: TextStyles.buttonBoldHeading,
-                      children: [
+    return SafeArea(
+      child: RotatedBox(
+        quarterTurns: 1, //rotaciona a tela
+        child: Material(
+          child: Container(
+            color: AppColors.shape,
+            child: Column(
+              children: [
+                Expanded(
+                    child: Container(
+                  color: Colors.black.withOpacity(0.6),
+                )),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(40),
+                      child: Text.rich(
                         TextSpan(
-                          text: "\n$subtitle",
-                          style: TextStyles.buttonHeading,
-                        )
-                      ]),
-                  textAlign: TextAlign.center,
+                            text: title,
+                            style: TextStyles.buttonBoldHeading,
+                            children: [
+                              TextSpan(
+                                text: "\n$subtitle",
+                                style: TextStyles.buttonHeading,
+                              )
+                            ]),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Container(
+                      height: 1,
+                      color: AppColors.stroke,
+                    ),
+                    SetLabelButtons(
+                        enablePrimaryColor: true,
+                        primaryLabel: primaryLabel,
+                        primaryOnPressed: primaryOnPressed,
+                        secondaryLabel: secondaryLabel,
+                        secondaryOnPressed: secondaryOnPressed),
+                    SizedBox(height: 2),
+                  ],
                 ),
-              ),
-              Divider(
-                color: AppColors.stroke,
-              ),
-              SetLabelButtons(
-                  primaryLabel: primaryLabel,
-                  primaryOnPressed: primaryOnPressed,
-                  secondaryLabel: secondaryLabel,
-                  secondaryOnPressed: secondaryOnPressed)
-            ]),
-          ],
+              ],
+            ),
+          ),
         ),
       ),
     );
